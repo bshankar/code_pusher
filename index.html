@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Code-Punisher</title>
-</head>
-<body>
-  <textarea name="code" id="code" cols="30" rows="10"></textarea>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+        <title>Code-Punisher</title>
+        <script>
+
+         // Enable pusher logging - don't include this in production
+         Pusher.logToConsole = true
+
+         var pusher = new Pusher('dd3d1cb1e89ac32335b4', {
+           cluster: 'ap2',
+           encrypted: true
+         })
+
+         var channel = pusher.subscribe('my-channel')
+         channel.bind('my-event', function(data) {
+           alert(data.message)
+         })
+        </script>
+    </head>
+    <body>
+        <textarea name="code" id="code" cols="30" rows="10"></textarea>
+    </body>
 </html>
