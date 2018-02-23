@@ -4,7 +4,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const Pusher = require('pusher')
 
-const port = 9000
+const PORT = process.env.PORT || 8080
 const APP_ID = process.env.APP_ID
 const APP_KEY = process.env.APP_KEY
 const APP_SECRET = process.env.APP_SECRET
@@ -41,6 +41,6 @@ app.all('*', function (req, res) {
   res.redirect('/')
 })
 
-app.listen(port, function () {
-  console.log('Listening on port ' + port)
+app.listen(PORT, function () {
+  console.log('Listening on port ' + PORT)
 })

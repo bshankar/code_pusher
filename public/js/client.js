@@ -4,11 +4,12 @@ let pusher = new Pusher('dd3d1cb1e89ac32335b4', {
 })
 
 let codeEditor = document.getElementById('code')
-
 let pathname = window.location.pathname
 let bufferid = 'private' + pathname.replace(/\//g, '-')
 let editEvent = 'client-text-edit'
+
 let channel = pusher.subscribe(bufferid)
+
 channel.bind(editEvent, function (data) {
   codeEditor.value = data
 })
@@ -18,7 +19,7 @@ channel.bind('pusher:subscription_succeeded', function () {
 })
 
 channel.bind('pusher:subscription_error', function (e) {
-  alert('I think you did something bad')
+  alert('Failed to collaborate.')
   console.log(e)
 })
 

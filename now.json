@@ -1,0 +1,9 @@
+{
+  "env": {
+    "APP_ID": "@punisher_app_id",
+    "APP_KEY": "@punisher_app_key",
+    "APP_SECRET": "@punisher_app_secret",
+    "APP_CLUSTER": "@punisher_app_cluster",
+    "APP_PORT": "@punisher_app_port"
+  }
+}
