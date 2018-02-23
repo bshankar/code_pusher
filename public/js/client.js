@@ -1,6 +1,3 @@
-// Enable pusher logging - don't include this in production
-Pusher.logToConsole = true
-
 let pusher = new Pusher('dd3d1cb1e89ac32335b4', {
   cluster: 'ap2',
   encrypted: true
@@ -8,8 +5,8 @@ let pusher = new Pusher('dd3d1cb1e89ac32335b4', {
 
 let codeEditor = document.getElementById('code')
 
-// FIXME get buffer id
-let bufferid = 'private-my-channel'
+let pathname = window.location.pathname
+let bufferid = 'private' + pathname.replace(/\//g, '-')
 let editEvent = 'client-text-edit'
 let channel = pusher.subscribe(bufferid)
 channel.bind(editEvent, function (data) {
