@@ -14,10 +14,55 @@ ___________.__             __________             .__       .__
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
-        <title>Code-Punisher</title>
+                <script src="/js/codemirror.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/searchcursor.js"></script>
+        <script src="/js/dialog.js"></script>        
+        <script src="/js/jump-to-line.js"></script>
+        <link rel="stylesheet" href="/css/codemirror.css">
+        <link rel="stylesheet" href="/css/dialog.css">
+        <link rel="stylesheet" href="/css/bulma.min.css">
+        <script src="/mode/javascript/javascript.js"></script> 
+        <title>GeekSkool Code Editor</title>
+        <!-- <title>Code-Punisher</title> -->
+        <style>
+            .cm-s-default{
+                background: rgb(247, 247, 247)
+            }
+            /* .CodeMirror{
+                height: 90%;
+            }     */
+        </style>
     </head>
     <body>
-        <textarea name="code" id="code" cols="30" rows="10"></textarea>
+        <header class="content has-text-centered">
+            <div class="tile is-child notification is-info">                          
+                <h1 class="title">GeekSkool Collaborative Code Editor</h1>
+            </div>
+        </header>
+        
+        <!-- <main> -->
+        <main style="height:90%">
+            <div class="tile is-ancestor">
+                <div class="tile is-2 is-vertical is-parent">
+                    <div class="tile is-child box" style="background-color:rgb(230, 241, 255)">
+                        <p class="subtitle">Connected Clients:</p>
+                        <ul id="peer-list">
+                            <!-- <li>peer1</li>
+                            <li>peer2</li> -->
+                        </ul>                        
+                    </div>
+                </div>
+                <div class="tile is-parent">
+                    <div class="tile is-child box" style="background-color:rgb(230, 241, 255)">
+                        <form>
+                            <textarea id="code" name="code"></textarea>                        
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script src="/js/editor.js"></script>
         <script src="/js/client.js"></script>
     </body>
 </html>
