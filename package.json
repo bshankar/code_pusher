@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/bshankar/code_pusher#readme",
   "dependencies": {
-    "express": "^4.16.2"
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "pusher": "^1.5.1"
   }
 }
