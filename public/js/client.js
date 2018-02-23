@@ -9,8 +9,9 @@ let codeEditor = CodeMirror.fromTextArea(document.getElementById('code'), {
   lineNumbers: true
 })
 
+let peer_ul = document.getElementById('peer-list')
 let pathname = window.location.pathname
-let bufferid = 'private' + pathname.replace(/\//g, '-')
+let bufferid = 'presence' + pathname.replace(/\//g, '-')
 let editEvent = 'client-text-edit'
 
 let channel = pusher.subscribe(bufferid)
@@ -19,8 +20,11 @@ channel.bind(editEvent, function (data) {
   codeEditor.setValue(data)
 })
 
-channel.bind('pusher:subscription_succeeded', function () {
+channel.bind('pusher:subscription_succeeded', function (members) {
   codeEditor.getInputField().addEventListener('input', changeHandler)
+  members.each(function (member) {
+    displayUserList(member.id)
+  })
 })
 
 channel.bind('pusher:subscription_error', function (e) {
@@ -28,15 +32,35 @@ channel.bind('pusher:subscription_error', function (e) {
   console.log(e)
 })
 
+channel.bind('pusher:member_added', function (member) {
+  deleteUserList()
+  channel.members.each(function (member) {
+    displayUserList(member.id)
+  })
+})
+
+channel.bind('pusher:member_removed', function (member) {
+  deleteUserList()
+  channel.members.each(function (member) {
+    displayUserList(member.id)
+  })
+})
+
 // on input change
 function changeHandler (event) {
   channel.trigger(editEvent, codeEditor.getValue())
 }
 
-let peers = ["MUK3SH", "BH4V4NI", "V3NK3Y", "1NDU5"]
-let peer_ul = document.getElementById("peer-list")
-peers.forEach((item) => {
-  var li = document.createElement("li")
-  li.appendChild(document.createTextNode(item))
+window.onbeforeunload = function () {
+  pusher.unsubscribe(bufferid)
+}
+
+function displayUserList (user) {
+  let li = document.createElement('li')
+  li.appendChild(document.createTextNode(user))
   peer_ul.appendChild(li)
-})
+}
+
+function deleteUserList () {
+  peer_ul.innerHTML = ''
+}
