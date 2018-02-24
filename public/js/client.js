@@ -21,7 +21,7 @@ channel.bind(editEvent, function (data) {
 })
 
 channel.bind('pusher:subscription_succeeded', function (members) {
-  codeEditor.getInputField().addEventListener('input', changeHandler)
+  codeEditor.on('keyup', changeHandler)
   members.each(function (member) {
     displayUserList(member.id)
   })
