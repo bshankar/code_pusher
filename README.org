@@ -1,0 +1,15 @@
+* Code Pusher
+  Online collaborative text editing using nodejs, express and pusher.com service
+
+* Usage
+  - Set up credentials on pusher.com
+  - export the credentials as environment variables (according to the
+    file =now.json=)
+
+  - Install npm packages, and run the server with
+   #+BEGIN_SRC shell
+   npm install
+   npm start
+   #+END_SRC
+
+  - Open =http://localhost:8080= in a browser.
