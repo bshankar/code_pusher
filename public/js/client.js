@@ -33,7 +33,7 @@ channel.bind('pusher:subscription_error', function (e) {
 })
 
 channel.bind('pusher:member_added', function (member) {
-  channel.trigger(editEvent, codeEditor.getValue())
+  changeHandler()
   deleteUserList()
   channel.members.each(function (member) {
     displayUserList(member.id)
@@ -75,6 +75,7 @@ function handleFileSelect (evt) {
       reader.readAsText(file, 'UTF-8')
       reader.onload = function (evt) {
           codeEditor.setValue(evt.target.result)
+          changeHandler()
       }
       reader.onerror = function (evt) {
           console.error('error reading file')
