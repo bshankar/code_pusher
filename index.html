@@ -33,6 +33,7 @@ ___________.__             __________             .__       .__
                 height: 90%;
             }     */
         </style>
+        
     </head>
     <body>
         <header class="content has-text-centered">
@@ -43,6 +44,18 @@ ___________.__             __________             .__       .__
 
         <!-- <main> -->
         <main style="height:90%">
+                <div class="field is-grouped is-grouped-right">
+                        <p class="control">
+                          <a class="button is-primary">
+                            Download
+                          </a>
+                        </p>
+                        <p class="control">
+                          <a id="load" class="button is-primary" script="loadfile()">
+                            Upload
+                          </a>
+                        </p>
+                      </div>
             <div class="tile is-ancestor">
                 <div class="tile is-2 is-vertical is-parent">
                     <div class="tile is-child box" style="background-color:rgb(230, 241, 255)">
@@ -63,5 +76,21 @@ ___________.__             __________             .__       .__
             </div>
         </main>
         <script src="/js/client.js"></script>
+        <script>
+                
+            let buttonload = document.getElementById("load")
+            let buttonload = document.getElementById("load")
+            buttonload.addEventListener("click", function(){
+                let codeText = document.getElementById("code")
+                codeText.value = "preload value"
+            })
+
+            function loadfile(event, filename){
+                console.log("hey")
+                let codeArea = document.getElementById("code")
+                console.log("codeArea: "+codeArea)
+                codeArea.nodeValue = "preload content"
+            }
+            </script>
     </body>
 </html>
