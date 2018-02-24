@@ -41,10 +41,6 @@ app.post('/pusher/auth', function (req, res) {
   res.send(auth)
 })
 
-app.get('/', function (req, res) {
-  res.send('Get back to work')
-})
-
 app.all('*', function (req, res) {
   res.redirect('/')
 })
