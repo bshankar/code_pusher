@@ -64,3 +64,20 @@ function displayUserList (user) {
 function deleteUserList () {
   peer_ul.innerHTML = ''
 }
+
+function handleFileSelect (evt) {
+  let files = evt.target.files
+  let file = files[0]
+  if (file) {
+      document.getElementById('file-name').innerHTML = file.name
+      let reader = new FileReader()
+      reader.readAsText(file, 'UTF-8')
+      reader.onload = function (evt) {
+          codeEditor.setValue(evt.target.result)
+      }
+      reader.onerror = function (evt) {
+          console.error('error reading file')
+      }
+  }
+}
+document.getElementById('file-upload').addEventListener('change', handleFileSelect, false)
