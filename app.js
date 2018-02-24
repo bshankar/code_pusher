@@ -27,6 +27,11 @@ app.get('/buffer/:bufferid', function (req, res) {
   res.sendFile(path.join(__dirname, '/index.html'))
 })
 
+app.get('/generate', function (req, res) {
+  let bufferid = uuidv4().slice(0, 8)
+  res.redirect('/buffer/' + bufferid)
+})
+
 app.post('/pusher/auth', function (req, res) {
   const socketId = req.body.socket_id
   const channel = req.body.channel_name
