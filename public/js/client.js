@@ -33,6 +33,7 @@ channel.bind('pusher:subscription_error', function (e) {
 })
 
 channel.bind('pusher:member_added', function (member) {
+  channel.trigger(editEvent, codeEditor.getValue())
   deleteUserList()
   channel.members.each(function (member) {
     displayUserList(member.id)
