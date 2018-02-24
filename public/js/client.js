@@ -82,3 +82,20 @@ function handleFileSelect (evt) {
   }
 }
 document.getElementById('file-upload').addEventListener('change', handleFileSelect, false)
+document.getElementById('download-button').addEventListener('click', downloadFile)
+
+function downloadFile () {
+  let filename = pathname.replace(/\//g, '') + '.js'
+  let text = codeEditor.getValue()
+  var pom = document.createElement('a')
+  pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text))
+  pom.setAttribute('download', filename)
+
+  if (document.createEvent) {
+    let event = document.createEvent('MouseEvents')
+    event.initEvent('click', true, true)
+    pom.dispatchEvent(event)
+  } else {
+    pom.click()
+  }
+}
